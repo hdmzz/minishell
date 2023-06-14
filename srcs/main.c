@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/13 15:42:31 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:33:57 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
 //il faut recuperer la commande donc faire un split et ensuite executer
-int	main(int ac, char **av, char **env)
+int	main(void)
 {
 	char	*buff;
 

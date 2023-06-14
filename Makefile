@@ -29,16 +29,15 @@ $O:
 $(OBJ): | $O
 
 $(OBJ): $O%.o: $S% Makefile $(HEADER) libft/libft.a
-	$(CC) -g3 -lreadline -c $< -o $@
+	$(CC) $(CFLAGS) -g3 -lreadline -c $< -o $@
 
 libft:
-	@if [ ! -d libft ]; then \
-		git clone https://github.com/hdmzz/libft.git; \
-	fi
+	git submodule init
+	git submodule update
 	@make -C libft
 
 $(NAME): $(OBJ)
-	$(CC) -g3 $^ -lreadline $(LIBFLAGS) -o $@
+	$(CC) $(CFLAGS) -g3 $^ -lreadline $(LIBFLAGS) -o $@
 
 clean:
 	rm -rf $(SRC:$S%=$O%.o)
