@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/14 11:44:06 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:15:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,27 +71,27 @@ static char	*get_cmd_path(char **to_search)
 	return (NULL);
 }
 
-void	exec(char **cmd)
+void	exec(t_shell *g_shell)
 {
 	pid_t	pid;
-	char	*full_cmd_path;
+	char	**split_cmd;
 
-
-	full_cmd_path = get_cmd_path(cmd);
+	split_cmd = g_shell->splitted_cmd;
+	if (access(split_cmd[0], X_OK) == 0)
+		g_shell->full_cmd_path = split_cmd[0];
+	else
+		g_shell->full_cmd_path = get_cmd_path(split_cmd);
 	pid = fork();
 	if (pid == -1)
-	{
 		perror("Fork issue");
-	}
 	if (pid > 0)
 	{
 		waitpid(pid, NULL, 0);
-		free(full_cmd_path);
 		kill(pid, SIGTERM);
 	}
 	else if (pid == 0)
 	{
-		if ((execve(full_cmd_path, cmd, NULL)) == -1)
+		if ((execve(g_shell->full_cmd_path, split_cmd, NULL)) == -1)
 			perror("Exec");
 		exit(EXIT_SUCCESS);
 	}

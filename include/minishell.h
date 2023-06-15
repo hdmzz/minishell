@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/13 17:16:57 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:13:46 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,18 @@
 # include <dirent.h>
 # include <stdbool.h>
 
+typedef struct s_shell
+{
+	char	*start_buff;
+	char	*full_cmd_path;
+	char	**splitted_cmd;
+}				t_shell;
+
 //srcs/parser/parser.c
-int		parser(char *cmd);
+int		parser(t_shell *g_shell);
 
 //srcs/exec/exec.c
-void	exec(char **cmd);
+void	exec(t_shell *g_shell);
 
 
 #endif

@@ -3,28 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/14 10:33:57 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:13:09 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/minishell.h"
 
+int	init_g_shell(t_shell *g_shell)
+{
+	g_shell->full_cmd_path = NULL;
+	g_shell->start_buff = NULL;
+	g_shell->splitted_cmd = NULL;
+	return (1);
+}
+
 //il faut recuperer la commande donc faire un split et ensuite executer
 int	main(void)
 {
-	char	*buff;
+	t_shell	g_shell;
 
-	buff = ft_calloc(sizeof(char), 2048);
-	if (!buff)
+	init_g_shell(&g_shell);
+	g_shell.start_buff = ft_calloc(sizeof(char), 2048);
+	if (!g_shell.start_buff)
 	{
 		perror("Error calloc");
 		return (1);
 	}
-	while ((buff = readline("$> ")) != NULL)
+	while ((g_shell.start_buff = readline("$> ")) != NULL)
 	{
-		parser(buff);
+		parser(&g_shell);
 	}
 }

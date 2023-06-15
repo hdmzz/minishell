@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:47:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/14 10:34:36 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:14:13 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,15 @@
 *	then search the binary file in the PATH
 */
 
-int	parser(char *cmd)
+int	parser(t_shell *g_shell)
 {
-	char	**split;
-
-	split = ft_split_charset(cmd, " 	");
-	if (!split)
+	g_shell->splitted_cmd = ft_split_charset(g_shell->start_buff, " 	");
+	if (!g_shell->splitted_cmd)
 	{
 		perror("Wrong arguments");
 		return (0);
 	}
-	exec(split);
-	ft_free_split(split);
+	exec(g_shell);
+	ft_free_split(g_shell->splitted_cmd);
 	return (1);
 }
