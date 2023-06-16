@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/13 13:47:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/16 12:45:27 by hdamitzi         ###   ########.fr       */
+/*   Created: 2023/06/15 13:38:17 by hdamitzi          #+#    #+#             */
+/*   Updated: 2023/06/15 13:41:27 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
 
-/*
-*	stock the command splitted in an array
-*	then search the binary file in the PATH
-*/
-int	parser(t_shell *g_shell)
+void	ft_free_shell(t_shell *g_shell)
 {
-	g_shell->splitted_cmd = ft_split_charset(g_shell->start_buff, " 	");
-	if (!g_shell->splitted_cmd)
-	{
-		perror("Wrong arguments");
-		return (0);
-	}
-	exec(g_shell);
-	ft_free_split(g_shell->splitted_cmd);
-	return (1);
+	if (g_shell->full_cmd_path != NULL)
+		free(g_shell->full_cmd_path);
+	if (g_shell->splitted_cmd != NULL)
+		ft_free_split(g_shell->splitted_cmd);
+	if (g_shell->start_buff != NULL)
+		free(g_shell->start_buff);
 }

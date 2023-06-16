@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/15 13:13:46 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/15 13:24:47 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int		parser(t_shell *g_shell);
 
 //srcs/exec/exec.c
 void	exec(t_shell *g_shell);
-
 
 #endif
