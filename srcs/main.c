@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/15 13:13:09 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/18 23:15:17 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	main(void)
 		perror("Error calloc");
 		return (1);
 	}
-	while ((g_shell.start_buff = readline("$> ")) != NULL)
+	while (isatty(STDIN_FILENO))
 	{
+		g_shell.start_buff = readline("$> ");
 		parser(&g_shell);
 	}
 }
