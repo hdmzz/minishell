@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/20 12:35:16 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:02:14 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ typedef enum e_tokens_type
 
 typedef struct s_token
 {
-	void			*value;
+	char			*value;
+	int				pos;
 	t_tokens_type	type;
+	struct s_token	*next;
 }				t_token;
 
 typedef struct s_shell
@@ -49,6 +51,7 @@ typedef struct s_shell
 	char	*start_buff;
 	char	*full_cmd_path;
 	char	**splitted_cmd;
+	t_token	**list_token;
 }				t_shell;
 
 //srcs/parser/parser.c
