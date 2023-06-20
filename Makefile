@@ -2,14 +2,18 @@ O = objs/
 S = srcs/
 P = parser/
 X = exec/
+L = lexer/
+U = utils/
 
 NAME =	minishell
 
 HEADER = include/minishell.h
 
 SRC = $Smain.c \
+		$Sexec/exec.c \
+		$Slexer/lexer.c \
 		$Sparser/parser.c \
-		$Sexec/exec.c
+		$Sutils/utils.c
 
 OBJ = $(SRC:$S%=$O%.o)
 
@@ -23,8 +27,10 @@ all: libft $(NAME)
 
 $O:
 	@mkdir -p $@
+	@mkdir -p $@lexer
 	@mkdir -p $@parser
 	@mkdir -p $@exec
+	@mkdir -p $@utils
 
 $(OBJ): | $O
 
