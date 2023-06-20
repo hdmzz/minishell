@@ -6,16 +6,11 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:47:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/20 13:58:44 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/20 14:41:17 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
-
-int	is_separator(char c)
-{
-	if (c == "")
-}
 
 /*
 *	stock the command splitted in an array

@@ -38,8 +38,6 @@ $(OBJ): $O%.o: $S% Makefile $(HEADER) libft/libft.a
 	$(CC) $(CFLAGS) -g3 -lreadline -c $< -o $@
 
 libft:
-	git submodule init
-	git submodule update
 	@make -C libft
 
 $(NAME): $(OBJ)
