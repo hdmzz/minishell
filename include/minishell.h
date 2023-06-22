@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/20 14:02:14 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/21 15:09:31 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,25 +24,33 @@
 # include <dirent.h>
 # include <stdbool.h>
 
-typedef enum e_tokens_type
+enum e_type
 {
-	literal,
+	new_line,
+	white_space,
+	pipeline,
 	single_quote,
-	doule_quote,
+	double_quote,
 	simple_redir_left,
 	simple_redir_right,
 	double_redir_left,
 	double_redir_right,
-	pipeline,
 	dollar,
-	space,
-}			t_tokens_type;
+	literal,
+};
+
+typedef struct s_token_trslte
+{
+	char	*value;
+	int		type;
+	char	*translation;
+}			t_token_trslte;
 
 typedef struct s_token
 {
 	char			*value;
 	int				pos;
-	t_tokens_type	type;
+	int				type;
 	struct s_token	*next;
 }				t_token;
 
@@ -61,7 +69,7 @@ int		parser(t_shell *g_shell);
 void	exec(t_shell *g_shell);
 
 //srcs/lexer/lexer.c
-void	lexer(t_shell *g_shell);
+t_token	*lexer(t_shell *g_shell);
 
 //src/utils/utils.c
 void	ft_free_shell(t_shell *g_shell);

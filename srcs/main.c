@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/18 23:15:17 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/20 23:27:53 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	init_g_shell(t_shell *g_shell)
 	g_shell->full_cmd_path = NULL;
 	g_shell->start_buff = NULL;
 	g_shell->splitted_cmd = NULL;
+	g_shell->list_token = NULL;
 	return (1);
 }
 
@@ -35,6 +36,7 @@ int	main(void)
 	while (isatty(STDIN_FILENO))
 	{
 		g_shell.start_buff = readline("$> ");
+		//lexer(&g_shell);
 		parser(&g_shell);
 	}
 }
