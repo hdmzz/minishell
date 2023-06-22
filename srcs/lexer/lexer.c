@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/22 13:23:47 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:09:06 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*new_token(char *value, int type, int pos)
 	new = malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->value = value;
+	new->value = ft_strdup(value);
 	new->type = type;
 	new->pos = pos;
 	new->next = NULL;
@@ -55,7 +55,7 @@ int	token_len(char *input)
 	int	len;
 
 	len = 0 ;
-	if (ft_strchr("><\t\n |$\\\"\'", input[len]))
+	if (ft_strchr("><\t\n |$\\\"\'", *input))
 	{
 		if (ft_strncmp("<<", input, 2) || ft_strncmp(">>", input, 2))
 			len = 2;
@@ -95,21 +95,33 @@ int	get_token_type(char *str)
 	return (0);
 }
 
+void	print_lst(t_token *token)
+{
+	while (token->next != NULL)
+	{
+		printf(":%s:\n", token->value);
+		token = token->next;
+	}
+	printf(":%s:\n", token->value);
+}
+
 /*
 	this function calculates the token size
 	ten malloc the size of the token and add it to the list
 	in arguments
 */
-int	create_token(t_token **lst, char *input, int *pos)
+int	create_token(t_token **lst, char **input, int *pos)
 {
 	char	*value;
 	int		token_size;
 	int		type;
 	t_token	*new;
 
-	token_size = token_len(input);//ici on a la longeur de ce que l'on va mettre ds la value
-	value = ft_strndup(input, token_size);
-	if (token_size == 0 || !value)
+	token_size = token_len(*input);//ici on a la longeur de ce que l'on va mettre ds la value
+	if (token_size == 0)
+		return (0);
+	value = ft_strndup((*input), token_size);
+	if (!value)
 		return (0);
 	type = get_token_type(value);
 	if (!type)
@@ -118,6 +130,8 @@ int	create_token(t_token **lst, char *input, int *pos)
 	if (!new)
 		return(free(value), 0);
 	token_add_back(lst, new);
+	*input += token_size;
+	return (1);
 }
 
 /*
@@ -135,12 +149,14 @@ t_token	*lexer(t_shell *g_shell)
 	input = g_shell->start_buff;
 	if (!input)
 		return (NULL);
-	while (*input)
+	while (*input != 0)
 	{
-		if (!create_token(&token, input, &i))
+		if (!create_token(&token, &input, &i))
 		{
 			//free token list etc
 			exit(EXIT_FAILURE);
 		}
 	}
+	print_lst(token);
+	return (token);
 }
