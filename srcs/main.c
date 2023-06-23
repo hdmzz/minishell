@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/22 13:27:13 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:37:47 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	main(void)
 	while (isatty(STDIN_FILENO))
 	{
 		g_shell.start_buff = readline("$> ");
-		lexer(&g_shell);
+		g_shell.list_token = lexer(&g_shell);
 		//parser(&g_shell);
 	}
 }

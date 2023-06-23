@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/21 15:09:31 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:29:04 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_shell
 	char	*start_buff;
 	char	*full_cmd_path;
 	char	**splitted_cmd;
-	t_token	**list_token;
+	t_token	*list_token;
 }				t_shell;
 
 //srcs/parser/parser.c
@@ -73,5 +73,13 @@ t_token	*lexer(t_shell *g_shell);
 
 //src/utils/utils.c
 void	ft_free_shell(t_shell *g_shell);
+
+//src/lexer/token_utils.c
+t_token	*new_token(char *value, int type, int pos);
+void	token_add_back(t_token **lst, t_token *to_add);
+
+
+//src/error/error.c
+void	error_handler(char *error);
 
 #endif

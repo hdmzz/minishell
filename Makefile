@@ -12,8 +12,10 @@ HEADER = include/minishell.h
 SRC = $Smain.c \
 		$Sexec/exec.c \
 		$Slexer/lexer.c \
+		$Slexer/token_utils.c \
 		$Sparser/parser.c \
-		$Sutils/utils.c
+		$Sutils/utils.c \
+		$Serror/error.c
 
 OBJ = $(SRC:$S%=$O%.o)
 
@@ -27,6 +29,7 @@ all: libft $(NAME)
 
 $O:
 	@mkdir -p $@
+	@mkdir -p $@error
 	@mkdir -p $@lexer
 	@mkdir -p $@parser
 	@mkdir -p $@exec
