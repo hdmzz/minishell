@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/22 16:29:34 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:41:12 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,5 @@ t_token	*lexer(t_shell *g_shell)
 			exit(EXIT_FAILURE);
 		}
 	}
-	print_lst(token);
 	return (token);
 }

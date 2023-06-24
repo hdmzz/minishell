@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/22 16:29:04 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:38:34 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,8 @@ void	token_add_back(t_token **lst, t_token *to_add);
 
 //src/error/error.c
 void	error_handler(char *error);
+
+//buiding function
+void	print_lst(t_token *token);
 
 #endif
