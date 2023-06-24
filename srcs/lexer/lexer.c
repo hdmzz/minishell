@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/23 14:41:12 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:39:01 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,13 @@ int	get_token_type(char *str)
 
 void	print_lst(t_token *token)
 {
-	while (token->next != NULL)
+	while (token && token->next != NULL)
 	{
 		printf(":%s:%d:%d:\n", token->value,token->type, token->pos);
 		token = token->next;
 	}
-	printf(":%s:%d:%d:\n", token->value,token->type, token->pos);
+	if (token)
+		printf(":%s:%d:%d:\n", token->value,token->type, token->pos);
 }
 
 /*
