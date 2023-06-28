@@ -6,11 +6,18 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 23:33:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/06/22 16:29:19 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/06/25 00:56:41 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/minishell.h"
+
+t_token	*last_token(t_token *token)
+{
+	while (token->next != NULL)
+		token = token->next;
+	return (token);
+}
 
 t_token	*new_token(char *value, int type, int pos)
 {
