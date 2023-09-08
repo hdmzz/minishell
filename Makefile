@@ -16,7 +16,9 @@ HEADER = include/minishell.h \
 			include/typedef.h
 
 SRC = $Smain.c \
-		$Sexec/exec.c \
+		$S$X/exec.c \
+		$S$Xexec_utils.c \
+		$S$Xexec_heredoc.c \
 		$Slexer/lexer.c \
 		$Slexer/token_utils.c \
 		$Slexer/token_utils2.c \
@@ -31,7 +33,6 @@ SRC = $Smain.c \
 		$Serror/error.c \
 		$S$Rheredoc.c \
 		$S$Rredir.c \
-		$S$Xexec_heredoc.c \
 		$S$Xpipes.c \
 		$S$(SIG)handle_signal.c \
 		$S$Bexit.c \

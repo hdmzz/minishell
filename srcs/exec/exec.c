@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/07 14:22:20 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:27:42 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int	get_err_num(t_cmd *c)
 		return (error_handler(c->cmd[0], NULL, "is a directory", \
 		INSUFFICIENT_PERMISSIONS));
 	if (access(c->full_cmd_path, F_OK) == -1)
-		return (error_handler("command not found", c->cmd[0], NULL, 127));
+		return (error_handler(c->cmd[0], "command not found", NULL, 127));
 	else if (access(c->full_cmd_path, X_OK) == -1)
-		return (error_handler("permission denied", c->cmd[0], strerror(errno), \
+		return (error_handler(c->cmd[0], "permission denied", strerror(errno), \
 		INSUFFICIENT_PERMISSIONS));
 	else if (access(c->full_cmd_path, X_OK | F_OK) != 0)
 		return (error_handler(c->cmd[0], NULL, strerror(errno), \

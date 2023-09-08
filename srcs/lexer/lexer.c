@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/05 03:07:29 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:23:23 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,8 @@ int	lexer(t_shell *g_shell)
 	input = g_shell->start_buff;
 	if (input == NULL)
 		exit_builtin(g_shell, 1);
+	if (ft_strcmp(input, "\n") == 0)
+		return (1);
 	while (*input != 0)
 	{
 		new_token = create_token(&input, &i);

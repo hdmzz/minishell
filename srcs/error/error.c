@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:16:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 16:49:01 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:29:10 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	error_handler(char *cmd, char *detail, char *err_msg, int err_nb)
 		msg = ft_join_shell(msg, detail);
 		if (detail_quotes)
 			msg = ft_join_shell(msg, "'");
-		msg = ft_join_shell(msg, ": ");
+		msg = ft_join_shell(msg, " ");
 	}
 	msg = ft_join_shell(msg, err_msg);
 	ft_putendl_fd(msg, STDERR_FILENO);

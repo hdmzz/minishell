@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:09:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/04 14:02:11 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:54:30 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,7 @@ int	wait_children(t_shell *g_shell)
 		if (ret == -1)
 			break ;
 	}
-	if (WIFSIGNALED(status))
-		status = WTERMSIG(status) + 128;
-	else if (WIFEXITED(status))
-		status = WEXITSTATUS(status);
+	status = get_exit_status(status);
 	free_pipes(g_shell);
 	return (status);
 }

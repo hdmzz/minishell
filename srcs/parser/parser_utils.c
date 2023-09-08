@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:18:04 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/04 15:21:27 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:29:36 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,11 @@ t_cmd	*create_new_cmd(t_token *token, int i, int split_size, int idx)
 	return (new);
 }
 
-/* 
-	here we are gonna take the list token and create a command node
-	based directly on the token no need to split and concat
- */
-void	compose_cmd(t_shell *g_shell)
+//ret == 0 first
+int	compose_cmd(t_shell *g_shell, int idx, int ret)
 {
 	int		nb_pipes;
 	int		nb_cmds;
-	int		idx;
 	t_token	*lst;
 
 	lst = g_shell->list_token;
@@ -107,7 +103,6 @@ void	compose_cmd(t_shell *g_shell)
 	g_shell->nb_pipes = nb_pipes;
 	g_shell->nb_cmds = nb_pipes + 1;
 	nb_cmds = nb_pipes + 1;
-	idx = 0;
 	while (nb_cmds--)
 	{
 		add_cmd_back(g_shell, create_new_cmd(lst, -1, \
@@ -119,5 +114,6 @@ void	compose_cmd(t_shell *g_shell)
 		idx++;
 	}
 	g_shell->cmds = g_shell->start_cmd->next;
-	prepare_io(g_shell->cmds);
+	ret = prepare_io(g_shell->cmds);
+	return (ret);
 }

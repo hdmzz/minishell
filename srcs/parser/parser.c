@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:47:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 15:28:52 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 15:28:53 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,6 @@ int	parser(t_shell *g_shell)
 		return (error_parsing_handler("pipe error", NULL, 1, 0));
 	if (!check_redirection_rules(g_shell))
 		return (error_parsing_handler("redirection error", NULL, 1, 0));
-	compose_cmd(g_shell);
+	ret = compose_cmd(g_shell, 0, 0);
 	return (ret);
 }

@@ -6,11 +6,13 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:16:36 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 01:34:50 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 16:21:59 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 static void	child(int pipe_fd[2], char *full_cmd_path, char **cmd_tab)
 {
@@ -61,7 +63,7 @@ char	*exec_imbricated_cmd(char *cmd_str, ssize_t bytes_read, t_shell *g)
 	cmd_tab = ft_split(cmd_str, 32);
 	full_cmd_path = get_cmd_path(cmd_tab, g);
 	if (full_cmd_path == NULL)
-		return (printf("bash: command not found\n"), NULL);
+		return (error_handler(cmd_tab[0], NULL, "command not found", 127), NULL);
 	if (pipe(pipe_fd) == -1)
 		perror("Pipe\n");
 	pid = fork();

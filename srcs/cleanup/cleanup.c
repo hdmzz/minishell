@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:00:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 00:09:49 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:19:12 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,20 @@ void	close_cmds_fds(t_cmd *c)
 
 void	restore_io(t_cmd *cmds)
 {
-	if (cmds->output_backup != -1)
+	if (cmds)
 	{
-		dup2(cmds->output_backup, STDOUT_FILENO);
-		close(cmds->output_backup);
-		cmds->output_backup = -1;
-	}
-	if (cmds->input_backup != -1)
-	{
-		dup2(cmds->input_backup, STDIN_FILENO);
-		close(cmds->input_backup);
-		cmds->input_backup = -1;
+		if (cmds->output_backup != -1)
+		{
+			dup2(cmds->output_backup, STDOUT_FILENO);
+			close(cmds->output_backup);
+			cmds->output_backup = -1;
+		}
+		if (cmds->input_backup != -1)
+		{
+			dup2(cmds->input_backup, STDIN_FILENO);
+			close(cmds->input_backup);
+			cmds->input_backup = -1;
+		}
 	}
 }
 

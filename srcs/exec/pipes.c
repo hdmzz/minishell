@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:15:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 17:55:33 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/08 13:25:42 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,11 @@ static int	handle_cmd(t_shell *g_shell)
 {
 	t_cmd	*c;
 	int		ret;
+	ret = 0;
 
 	c = g_shell->cmds;
+	if (c == NULL)
+		return (EXIT_SUCCESS);
 	redir_io(c);
 	ret = dispatcher_builtin(g_shell, c);
 	restore_io(c);
