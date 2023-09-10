@@ -6,42 +6,13 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:52:24 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 14:41:31 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <term.h>
 #include <curses.h>
-
-//static void	close_heredoc_fds(t_cmd *c)
-//{
-//	if (c->fd_heredoc != -1)
-//	{
-//		close(c->fd_heredoc);
-//		c->fd_heredoc = -1;
-//	}
-//	if (c->fd_in != -1)
-//	{
-//		close(c->fd_in);
-//		c->fd_in = -1;
-//	}
-//	if (c->fd_out != -1)
-//	{
-//		close(c->fd_out);
-//		c->fd_out = -1;
-//	}
-//	if (c->output_backup != -1)
-//	{
-//		close(c->output_backup);
-//		c->output_backup = -1;
-//	}
-//	if (c->input_backup != -1)
-//	{
-//		close(c->input_backup);
-//		c->input_backup = -1;
-//	}
-//}
 
 void	sig_heredoc_handler(int signum)
 {
@@ -59,8 +30,6 @@ int	child_heredoc(t_cmd *c, int *pipe, char *delim)
 
 	signal(SIGINT, sig_heredoc_handler);
 	close(pipe[0]);
-	close(c->g_shell->input_backup);
-	close(c->g_shell->output_backup);
 	ret = 0;
 	while (1)
 	{
