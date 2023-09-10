@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 11:18:04 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 15:29:36 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:23:29 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,14 @@ t_cmd	*create_new_cmd(t_token *token, int i, int split_size, int idx)
 			new->hd_delim_into_quotes = token->hd_delim_into_quotes;
 		token = token->next;
 	}
-	new->fd_in = -1;
-	new->fd_out = -1;
+	new->fd_in = 0;
+	new->fd_out = 1;
 	new->input_backup = -1;
 	new->output_backup = -1;
 	new->idx_cmd = idx;
 	return (new);
 }
 
-//ret == 0 first
 int	compose_cmd(t_shell *g_shell, int idx, int ret)
 {
 	int		nb_pipes;

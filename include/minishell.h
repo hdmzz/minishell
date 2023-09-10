@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 16:11:47 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 10:11:03 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		parser(t_shell *g_shell);
 void	dollar_rule(t_shell *g_shell, t_token *lst, int quote_count);
 
 //parser_utils.c
-int	compose_cmd(t_shell *g_shell, int idx, int ret);
+int		compose_cmd(t_shell *g_shell, int idx, int ret);
 
 //srcs/exec/exec.c
 int		exec_cmd(char **cmd, t_cmd *c, t_shell *g_shell);
@@ -98,5 +98,10 @@ void	*free_lst_token(t_token *tokens);
 char	*ev_expander(t_token *l);
 
 int		get_exit_status(int status);
+
+
+void	sigint_listener(int signum);
+int		child_heredoc(t_cmd *c, int *pipe, char *delim);
+
 
 #endif

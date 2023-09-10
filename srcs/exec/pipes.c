@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:15:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 13:25:42 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:31:59 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	child(t_cmd *c, t_shell *g_shell)
 		set_pipes(c, g_shell);
 	redir_io(c);
 	ret = dispatcher_builtin(g_shell, c);
-	if (c->fd_in != -1)
+	if (c->fd_in != 0)
 		close(c->fd_in);
-	if (c->fd_out != -1)
+	if (c->fd_out != 1)
 		close(c->fd_out);
 	if (ret == COMMAND_NOT_FOUND)
 		ret = exec_cmd(c->cmd, c, g_shell);

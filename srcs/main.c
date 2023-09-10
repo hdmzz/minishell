@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 09:27:13 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:24:52 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,5 @@ int	main(int ac, char **av, char **env)
 		return (perror("Error init shell\n"), 1);
 	g_shell.start_cmd = &start_cmd;
 	prompt(&g_shell);
-	ft_free_ptr(g_shell.start_token);
 	return (0);
 }

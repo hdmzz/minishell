@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_heredoc_signals.c                           :+:      :+:    :+:   */
+/*   ft_concat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 15:01:32 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 08:42:19 by hdamitzi         ###   ########.fr       */
+/*   Created: 2023/09/08 14:11:11 by hdamitzi          #+#    #+#             */
+/*   Updated: 2023/09/08 14:12:08 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	heredoc_handler(int signal)
+char	*ft_concat(char *s1, char *s2)
 {
-	if (signal == SIGINT)
-	{
-		g_last_exit_code = 130;
-		rl_on_new_line();
-		rl_replace_line("", 0);
-		rl_redisplay();
-	}
-}
+	char	*dst;
+	size_t	len_s1;
+	size_t	len_s2;
 
-void	sigint_listener(int signum)
-{
-	struct sigaction	sa;
-
-	
+	len_s1 = ft_strlen(s1);
+	len_s2 = ft_strlen(s2);
+	dst = (char *)ft_calloc((len_s1 + len_s2 + 1), sizeof(*dst));
+	if (dst == NULL)
+		return (NULL);
+	ft_memcpy(dst, s1, len_s1);
+	ft_memcpy((dst + len_s1), s2, len_s2);
+	free((void *)s1);
+	return (dst);
 }

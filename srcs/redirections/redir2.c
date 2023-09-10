@@ -6,64 +6,43 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:51:58 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 17:47:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:42:49 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ft_mkstemp(char *filename)
+//fonction qui recupere le statut de sortie du process fils
+//et qui le renvoie, en assignant a la commande le fd_in
+int	parent_heredoc(pid_t pid, t_cmd *c, int *pipe)
 {
-	int	try_max;
-	int	fd;
-	int	i;
+	int	status;
 
-	i = 0;
-	try_max = 0;
-	fd = open(filename, O_CREAT | O_EXCL | O_RDWR | O_TRUNC, 0600);
-	while (fd == -1 && try_max <= 15)
-	{
-		while (filename[i] && filename[i] != '0')
-			i += 1;
-		if (filename[i] && ft_isalnum(filename[i] + 1))
-			filename[i] = filename[i] + 1;
-		else
-			filename[i] = 'a';
-		fd = open(filename, O_CREAT | O_EXCL | O_RDWR | O_TRUNC, 0600);
-		try_max++;
-	}
-	if (try_max == 15)
-		return (-1);
-	return (fd);
+	signal(SIGINT, SIG_IGN);
+	waitpid(pid, &status, 0);
+	status = get_exit_status(status);
+	if (status == 0)
+		c->fd_in = dup(pipe[0]);
+	close(pipe[1]);
+	close(pipe[0]);
+	return (status);
 }
 
 static int	prep_heredoc(t_cmd *c, char *delim)
 {
-	static char	tmpfile[] = "tmpfile0";
-	int			i;
-	pid_t		pid;
-	int			status;
-	int			ret;
+	int	pid;
+	int	heredoc_pipe[2];
+	int	ret;
 
-	i = 0;
-	c->heredoc = 1;
-	c->fd_heredoc = ft_mkstemp(tmpfile);
-	if (c->fd_heredoc == -1)
-		return (perror("too many temporary files"), 1);
-	c->fd_in = open(tmpfile, O_RDONLY, NULL);
-	unlink(tmpfile);
-	c->heredoc_delim = delim;
+	if (pipe(heredoc_pipe) == -1)
+		return (1);
 	pid = fork();
+	if (pid == -1)
+		return (1);
 	if (pid == 0)
-		heredoc(c);
-	else
-		waitpid(pid, &status, 0);
-	ret = get_exit_status(status);
-	while (tmpfile[i] && !ft_isdigit(tmpfile[i]))
-		i++;
-	if (tmpfile[i] == '9')
-		tmpfile[i] = '0';
-	return (tmpfile[i] = tmpfile[i] + 1, ret);
+		child_heredoc(c, heredoc_pipe, delim);
+	ret = parent_heredoc(pid, c, heredoc_pipe);
+	return (ret);
 }
 
 static int	left_redir(t_cmd *c, int i)
