@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:40:44 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:52:24 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ int	child_heredoc(t_cmd *c, int *pipe, char *delim)
 
 	signal(SIGINT, sig_heredoc_handler);
 	close(pipe[0]);
+	close(c->g_shell->input_backup);
+	close(c->g_shell->output_backup);
 	ret = 0;
 	while (1)
 	{

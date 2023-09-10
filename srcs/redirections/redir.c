@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:23:13 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:24:24 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/10 11:48:57 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,6 @@ void	recover_or_io(t_cmd *cmd)
 		dup2(cmd->output_backup, STDOUT_FILENO);
 	if (cmd->fd_in != 0)
 		dup2(cmd->input_backup, STDIN_FILENO);
-}
-
-int	recover_fd(t_shell *g_shell)
-{
-	int	ret;
-
-	ret = 1;
-	if (g_shell->output_backup != -1 && g_shell->output_backup != STDOUT_FILENO)
-	{
-		if (dup2(g_shell->output_backup, STDOUT_FILENO) == -1)
-			ret = 0;
-	}
-	if (g_shell->input_backup != -1 && g_shell->input_backup != STDIN_FILENO)
-	{
-		if (dup2(g_shell->input_backup, STDIN_FILENO) == -1)
-			ret = 0;
-	}
-	return (ret);
 }
 
 void	redir_io(t_cmd *c)
