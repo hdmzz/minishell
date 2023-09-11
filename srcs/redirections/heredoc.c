@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 19:31:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:01:46 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,40 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 	return (ret);
 }
 
+static void	close_prev_fd(t_cmd *c)
+{
+	t_cmd	*tmp;
 
-int	child_heredoc(t_cmd *c, int *pipe, char *delim)
+	tmp = c;
+	while (c && c->idx_cmd != -1)
+		c = c->prev;
+	if (c)
+		c = c->next;
+	while (c && c != tmp)
+	{
+		if (c->fd_in != 0)
+		{
+			close(c->fd_in);
+			c->fd_in = 0;
+		}
+		if (c->fd_out != 1)
+		{
+			close(c->fd_out);
+			c->fd_out = 1;
+		}
+		c = c->next;
+	}
+}
+
+
+int	child_heredoc(t_cmd *c, int *pipe, char *delim)//il faut fermer les fd in des autres commanddes ici
 {
 	char	*tmp;
 	int		ret;
 	int		fd;
 
 	fd = dup(pipe[1]);
+	close_prev_fd(c);
 	close(pipe[0]);
 	close(pipe[1]);
 	ret = get_heredoc_line(c, &tmp, delim, fd);

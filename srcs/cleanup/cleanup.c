@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:00:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 19:09:19 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:48:23 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,15 @@ void	close_cmds_fds(t_cmd *c)
 	while (tmp)
 	{
 		if (tmp->fd_in != 0)
+		{
 			close(tmp->fd_in);
+			tmp->fd_in = 0;
+		}
 		if (tmp->fd_out != 1)
+		{
 			close(tmp->fd_out);
+			tmp->fd_out = 1;
+		}
 		close_pipes_fds(c, NULL);
 		tmp = tmp->next;
 	}
