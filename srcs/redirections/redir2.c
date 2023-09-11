@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:51:58 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 16:18:41 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:31:50 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	prepare_io(t_cmd *c)
 
 	tmp = c;
 	ret = 0;
-	while (tmp)
+	while (tmp && ret == 0)
 	{
 		if (ret == 0)
 			ret = left_redir(tmp, -1);

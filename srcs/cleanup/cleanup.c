@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 11:00:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:34:35 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:09:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,20 @@ void	restore_io(t_cmd *cmds)
 	}
 }
 
-void	close_fds(int *fd)
+void	close_fds(t_cmd *c)
 {
-	if (fd != NULL)
+	while (c)
 	{
-		close(fd[1]);
-		close(fd[0]);
+		if (c->fd_in != 0)
+		{
+			close(c->fd_in);
+			c->fd_in = 0;
+		}
+		if (c->fd_out != 1)
+		{
+			close(c->fd_out);
+			c->fd_out = 1;
+		}
+		c = c->next;
 	}
 }

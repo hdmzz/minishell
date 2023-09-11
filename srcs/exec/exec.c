@@ -6,29 +6,24 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 16:27:42 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 18:20:41 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	cmd_is_dir(char **cmd)
-{
-	struct stat	buf;
-
-	ft_bzero(&buf, sizeof(struct stat));
-	stat(cmd[0], &buf);
-	return (S_ISDIR(buf.st_mode));
-}
-
 static int	get_err_num(t_cmd *c)
 {
-	if (cmd_is_dir(c->cmd))
+	struct stat	st;
+
+	if (stat(c->full_cmd_path, &st) == -1)
+		return (error_handler(c->cmd[0], "command not found", NULL, 127));
+	if (S_ISDIR(st.st_mode))
 		return (error_handler(c->cmd[0], NULL, "is a directory", \
 		INSUFFICIENT_PERMISSIONS));
-	if (access(c->full_cmd_path, F_OK) == -1)
+	if (access(c->full_cmd_path, X_OK) == -1)
 		return (error_handler(c->cmd[0], "command not found", NULL, 127));
-	else if (access(c->full_cmd_path, X_OK) == -1)
+	else if (access(c->full_cmd_path, F_OK) == -1)
 		return (error_handler(c->cmd[0], "permission denied", strerror(errno), \
 		INSUFFICIENT_PERMISSIONS));
 	else if (access(c->full_cmd_path, X_OK | F_OK) != 0)

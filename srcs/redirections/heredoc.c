@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 16:14:37 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:31:08 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,8 @@ void	sig_heredoc_handler(int signum)
 	if (signum == SIGINT)
 	{
 		g_last_exit_code = 130;
-		write(1, "\n", 1);
 		close(0);
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
+		write (1, "\n", 1);
 	}
 }
 
@@ -31,11 +28,13 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 {
 	int	ret;
 
+	signal(SIGINT, sig_heredoc_handler);
 	while (1)
 	{
-		signal(SIGINT, sig_heredoc_handler);
 		*line = readline("> ");
-		if (*line == NULL)
+		if (*line == NULL && g_last_exit_code == 130)
+			return (g_last_exit_code);
+		else if (*line == NULL)
 		{
 			ret = error_handler("warning", \
 			"here doc delimited by end of file wanted", delim, 1);

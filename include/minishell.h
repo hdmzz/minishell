@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 15:25:45 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 19:05:08 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	recover_or_io(t_cmd *cmd);
 void	redir_io(t_cmd *c);
 
 //cleanup.c
-void	close_fds(int *fd);
+void	close_fds(t_cmd *c);
 void	close_pipes_fds(t_cmd *cmds, t_cmd *cur);
 void	free_pipes(t_shell *g_shell);
 void	close_cmds_fds(t_cmd *c);
