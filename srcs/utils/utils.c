@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/15 13:38:17 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 13:51:50 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:12:31 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	free_all(t_shell *g_shell)
 		g_shell->pids = ft_free_ptr(g_shell->pids);
 	if (g_shell->io != NULL)
 		g_shell->io = ft_free_ptr(g_shell->io);
-	close(g_shell->output_backup);
-	close(g_shell->input_backup);
 }
 
 void	ft_free_shell(t_shell *g_shell, int last_exit)

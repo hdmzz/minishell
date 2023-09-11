@@ -6,14 +6,12 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:51:58 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:42:49 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:18:41 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-//fonction qui recupere le statut de sortie du process fils
-//et qui le renvoie, en assignant a la commande le fd_in
 int	parent_heredoc(pid_t pid, t_cmd *c, int *pipe)
 {
 	int	status;

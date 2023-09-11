@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:46 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 10:09:49 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:13:18 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,9 +120,7 @@ typedef struct s_shell
 	t_cmd	*cmds;
 	t_cmd	*start_cmd;
 	int		nb_cmds;
-	int		output_backup;
 	t_io	*io;
-	int		input_backup;
 	int		**pipes_fd;
 	pid_t	*pids;
 	int		nb_pipes;

@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:20:05 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 14:36:53 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:09:15 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,15 @@ char	*heredoc_var_xpanser(char *input, t_shell *g)
 		if (tab[i][0] == '$')
 		{
 			buff = tab[i];
-			temp = var_xpanser(buff, g);
-			ft_free_split(tab);
+			tab[i] = var_xpanser(tab[i], g);
+			buff = ft_free_ptr(buff);
+			temp = recompose_input(tab);
 			return (temp);
 		}
 		i++;
 	}
+	if (tab[0] != NULL)
+		ft_free_split(tab);
 	return (NULL);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:48:11 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:24:52 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 13:12:46 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ static int	init_g_shell(t_shell *g, t_cmd *start_cmd, t_token *tok, char **env)
 	tok->type = 513;
 	tok->pos = 0;
 	start_cmd->idx_cmd = -1;
-	g->output_backup = dup(STDOUT_FILENO);
-	g->input_backup = dup(STDIN_FILENO);
 	g->start_token = tok;
 	g->split_env = ft_calloc(split_lenght(env) + 1, sizeof(char *));
 	if (g->split_env == NULL)

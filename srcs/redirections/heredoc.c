@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 14:41:31 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 16:14:37 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,39 +18,54 @@ void	sig_heredoc_handler(int signum)
 {
 	if (signum == SIGINT)
 	{
+		g_last_exit_code = 130;
 		write(1, "\n", 1);
-		exit(130);
+		close(0);
+		rl_on_new_line();
+		rl_replace_line("", 1);
+		rl_redisplay();
 	}
 }
 
-int	child_heredoc(t_cmd *c, int *pipe, char *delim)
+int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 {
-	char	*tmp;
-	int		ret;
+	int	ret;
 
-	signal(SIGINT, sig_heredoc_handler);
-	close(pipe[0]);
-	ret = 0;
 	while (1)
 	{
-		tmp = readline("> ");
-		if (tmp == NULL)
+		signal(SIGINT, sig_heredoc_handler);
+		*line = readline("> ");
+		if (*line == NULL)
 		{
 			ret = error_handler("warning", \
 			"here doc delimited by end of file wanted", delim, 1);
 			break ;
 		}
-		if (ft_strcmp(delim, tmp) == 0)
+		if (ft_strcmp(delim, *line) == 0)
 		{
 			ret = 0;
+			close(pipe);
 			break ;
 		}
 		if (c->hd_delim_into_quotes == 0)
-			tmp = heredoc_expanser(tmp, c, -1, 0);
-		ft_putendl_fd(tmp, pipe[1]);
-		tmp = ft_free_ptr(tmp);
+			*line = heredoc_expanser(*line, c, -1, 0);
+		ft_putendl_fd(*line, pipe);
+		*line = ft_free_ptr(*line);
 	}
-	tmp = ft_free_ptr(tmp);
+	return (ret);
+}
+
+
+int	child_heredoc(t_cmd *c, int *pipe, char *delim)
+{
+	char	*tmp;
+	int		ret;
+	int		fd;
+
+	fd = dup(pipe[1]);
+	close(pipe[0]);
 	close(pipe[1]);
+	ret = get_heredoc_line(c, &tmp, delim, fd);
+	close(fd);
 	exit(ret);
 }
