@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 19:05:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:08:55 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	*free_lst_token(t_token *tokens);
 char	*ev_expander(t_token *l);
 
 int		get_exit_status(int status);
-
 
 void	sigint_listener(int signum);
 int		child_heredoc(t_cmd *c, int *pipe, char *delim);

@@ -48,7 +48,6 @@ SRC = $Smain.c \
 		$S$Xpipes_utils.c \
 		$S$Pquotes_utils.c
 
-
 OBJ = $(SRC:$S%=$O%.o)
 
 CC = gcc

@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:46 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 13:13:18 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:09:49 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # ifndef PATH_MAX
 #  define PATH_MAX 4096
 # endif
+
+# define HD_CTLD "here doc delimited by end of file wanted"
+# define CMD_NOT_FND "command not found"
 
 extern int	g_last_exit_code;
 

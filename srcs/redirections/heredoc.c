@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 20:01:46 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:10:11 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 			return (g_last_exit_code);
 		else if (*line == NULL)
 		{
-			ret = error_handler("warning", \
-			"here doc delimited by end of file wanted", delim, 1);
+			ret = error_handler("warning", HD_CTLD, delim, 1);
 			break ;
 		}
 		if (ft_strcmp(delim, *line) == 0)
@@ -79,8 +78,7 @@ static void	close_prev_fd(t_cmd *c)
 	}
 }
 
-
-int	child_heredoc(t_cmd *c, int *pipe, char *delim)//il faut fermer les fd in des autres commanddes ici
+int	child_heredoc(t_cmd *c, int *pipe, char *delim)
 {
 	char	*tmp;
 	int		ret;

@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 12:52:48 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:22:12 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,3 +64,4 @@ char	*substitute_input_wth_output(char *input, char *cmd_output)
 	new_input = recompose_input(tmp);
 	return (new_input);
 }
+

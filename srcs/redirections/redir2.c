@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 02:51:58 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 18:31:50 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/11 20:14:47 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,9 @@ static int	prep_heredoc(t_cmd *c, char *delim)
 	return (ret);
 }
 
-static int	left_redir(t_cmd *c, int i)
+static int	left_redir(t_cmd *c, int i, int split_len)
 {
 	char	**cmd;
-	int		split_len;
 	int		ret;
 
 	c->heredoc = 0;
@@ -111,7 +110,7 @@ int	prepare_io(t_cmd *c)
 	while (tmp && ret == 0)
 	{
 		if (ret == 0)
-			ret = left_redir(tmp, -1);
+			ret = left_redir(tmp, -1, 0);
 		if (ret == 0)
 			ret = right_redir(tmp, -1);
 		tmp = tmp->next;
