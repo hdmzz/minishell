@@ -32,6 +32,7 @@ SRC = $Smain.c \
 		$S$U/utils2.c \
 		$Serror/error.c \
 		$S$Rheredoc.c \
+		$S$Rheredoc2.c \
 		$S$Rredir.c \
 		$S$Xpipes.c \
 		$S$(SIG)handle_signal.c \

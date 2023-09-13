@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 14:17:48 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 15:54:27 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <term.h>
 #include <curses.h>
 
-int	first_heredoc_verif(char *line, char *delim, int pipe)
+int	first_heredoc_verif(char **line, char *delim, int pipe)
 {
 	int	ret;
 
@@ -45,6 +45,9 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 {
 	int	ret;
 
+	int y;
+	scanf("%d", &y);
+	
 	signal(SIGINT, sig_heredoc_handler);
 	while (1)
 	{
@@ -53,7 +56,7 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 		if (ret != 2)
 			break ;
 		if (c->hd_delim_into_quotes == 0)
-			*line = heredoc_cmd_parser(line, c->g_shell, c);
+			*line = heredoc_cmd_parser(*line, c);
 		ft_putendl_fd(*line, pipe);
 		*line = ft_free_ptr(*line);
 	}
