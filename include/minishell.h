@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 20:08:55 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 12:41:18 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ char	*get_cmd_path(char **to_search, t_shell *g_shell);
 
 //srcs/lexer/lexer.c
 int		lexer(t_shell *g_shell);
+int		token_len(char *input);
+
 
 //src/utils/utils.c
 void	ft_free_shell(t_shell *g_shell, int last_exit);

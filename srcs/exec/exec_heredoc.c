@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:16:36 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 20:47:56 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/12 02:32:49 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 static void	child(int pipe_fd[2], char *full_cmd_path, char **cmd_tab)
 {
-	int	ret;
-
 	dup2(pipe_fd[1], STDOUT_FILENO);
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
@@ -24,35 +22,24 @@ static void	child(int pipe_fd[2], char *full_cmd_path, char **cmd_tab)
 	exit(1);
 }
 
-static char	*recompose_output(int fd, ssize_t bytes_read)
+static char	*recompose_output(int fd)
 {
-	char	*buffer;
-	char	*tmp;
+	char	*big_line;
 	char	*line;
 
-	buffer = ft_calloc(1024, sizeof(char));
-	if (!buffer)
-		return (NULL);
-	line = ft_calloc(1024, sizeof(char));
-	if (!line)
-		return (NULL);
-	while (1)
+	line = get_next_line(fd);
+	big_line = NULL;
+	while (line)
 	{
-		bytes_read = read(fd, line, 1024 - 1);
-		if (bytes_read == -1)
-			return (NULL);
-		if (bytes_read == 0)
-			break ;
-		line[bytes_read] = '\0';
-		tmp = ft_strjoin(buffer, line);
-		ft_free_ptr(buffer);
-		buffer = tmp;
+		if (line)
+			big_line = ft_join_shell(big_line, line);
+		ft_free_ptr(line);
+		line = get_next_line(fd);
 	}
-	ft_free_ptr(line);
-	return (buffer);
+	return (big_line);
 }
 
-char	*exec_imbricated_cmd(char *cmd_str, ssize_t bytes_read, t_shell *g)
+char	*exec_imbricated_cmd(char *cmd_str, t_shell *g)
 {
 	char	**cmd_tab;
 	int		pid;
@@ -63,20 +50,20 @@ char	*exec_imbricated_cmd(char *cmd_str, ssize_t bytes_read, t_shell *g)
 	cmd_tab = ft_split(cmd_str, 32);
 	full_cmd_path = get_cmd_path(cmd_tab, g);
 	if (full_cmd_path == NULL)
-		return (error_handler(cmd_tab[0], NULL, CMD_NOT_FND, 127), NULL);
+		return (ft_free_split(cmd_tab), ft_strjoin(cmd_tab[0], \
+		": command not found"));
 	if (pipe(pipe_fd) == -1)
-		perror("Pipe\n");
+		return (ft_free_split(cmd_tab), NULL);
 	pid = fork();
 	if (pid == -1)
 		return (NULL);
 	if (pid == 0)
 		child(pipe_fd, full_cmd_path, cmd_tab);
 	close(pipe_fd[1]);
-	output = recompose_output(pipe_fd[0], bytes_read);
+	output = recompose_output(pipe_fd[0]);
 	close (pipe_fd[0]);
 	if (output == NULL)
-		return (NULL);
+		return (ft_free_split(cmd_tab), NULL);
 	waitpid(pid, &g_last_exit_code, 0);
-	ft_free_ptr(full_cmd_path);
-	return (ft_free_split(cmd_tab), output);
+	return (ft_free_ptr(full_cmd_path), ft_free_split(cmd_tab), output);
 }

@@ -6,13 +6,30 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 20:10:11 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:17:48 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <term.h>
 #include <curses.h>
+
+int	first_heredoc_verif(char *line, char *delim, int pipe)
+{
+	int	ret;
+
+	ret = 2;
+	if (*line == NULL && g_last_exit_code == 130)
+		return (g_last_exit_code);
+	else if (*line == NULL)
+		ret = error_handler("warning", HD_CTLD, delim, 1);
+	if (ft_strcmp(delim, *line) == 0)
+	{
+		ret = 0;
+		close(pipe);
+	}
+	return (ret);
+}
 
 void	sig_heredoc_handler(int signum)
 {
@@ -32,21 +49,11 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 	while (1)
 	{
 		*line = readline("> ");
-		if (*line == NULL && g_last_exit_code == 130)
-			return (g_last_exit_code);
-		else if (*line == NULL)
-		{
-			ret = error_handler("warning", HD_CTLD, delim, 1);
+		ret = first_heredoc_verif(line, delim, pipe);
+		if (ret != 2)
 			break ;
-		}
-		if (ft_strcmp(delim, *line) == 0)
-		{
-			ret = 0;
-			close(pipe);
-			break ;
-		}
 		if (c->hd_delim_into_quotes == 0)
-			*line = heredoc_expanser(*line, c, -1, 0);
+			*line = heredoc_cmd_parser(line, c->g_shell, c);
 		ft_putendl_fd(*line, pipe);
 		*line = ft_free_ptr(*line);
 	}

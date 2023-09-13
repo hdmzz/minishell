@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:52:54 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/08 09:54:15 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 14:45:36 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ size_t				ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t				ft_strlcat(char *dst, const char *src, size_t dstsize);
 
 char				**ft_split(char const *s, char c);
+char				*recompose_split(char **tab);
 
 t_list				*ft_lstlast(t_list *lst);
 t_list				*ft_lstnew(void *content);

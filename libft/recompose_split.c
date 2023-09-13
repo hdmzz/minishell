@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_heredoc_utils.c                             :+:      :+:    :+:   */
+/*   recompose_split.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/12 02:36:00 by hdamitzi         ###   ########.fr       */
+/*   Created: 2023/09/13 14:44:53 by hdamitzi          #+#    #+#             */
+/*   Updated: 2023/09/13 14:45:10 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-char	*recompose_input(char **tab)
+char	*recompose_split(char **tab)
 {
 	char	*new_input;
 	int		total_len;
@@ -39,32 +39,3 @@ char	*recompose_input(char **tab)
 	ft_free_split(tab);
 	return (new_input);
 }
-
-char	*substitute_input_wth_output(char *input, char *cmd_output)
-{
-	char	**tab;
-	char	**tmp;
-	char	*new_input;
-	int		i;
-
-	tab = ft_split(input, '$');
-	tmp = tab;
-	if (!tab || !cmd_output)
-	{
-		ft_free_split(tab);
-		return ("Error substitute_input_wth_output");
-	}
-	i = 0;
-	while (tmp[i])
-	{
-		if (tmp[i][0] == '(')
-		{
-			tmp[i] = ft_free_ptr(tmp[i]);
-			tmp[i] = cmd_output;
-		}
-		i++;
-	}
-	new_input = recompose_input(tmp);
-	return (new_input);
-}
-

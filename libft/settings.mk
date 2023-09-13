@@ -55,7 +55,8 @@ SRCLIBFT = ft_atoi.c\
 	ft_recompose_split.c \
 	ft_str_is_alnum.c \
 	ft_free_ptr.c \
-	ft_putchar.c
+	ft_putchar.c \
+	recompose_split.c
 
 SRC_BONUS	= ft_lstadd_back_bonus.c \
 			ft_lstadd_front_bonus.c \
