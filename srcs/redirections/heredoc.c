@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 15:54:27 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:03:39 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	get_heredoc_line(t_cmd *c, char **line, char *delim, int pipe)
 
 	int y;
 	scanf("%d", &y);
-	
 	signal(SIGINT, sig_heredoc_handler);
 	while (1)
 	{

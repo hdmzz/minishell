@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 17:12:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 21:18:50 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	token_len(char *input)
 	int	len;
 
 	len = 0 ;
-	if (ft_strchr("()><\t\n |$\\\"\'", *input))
+	if (ft_strchr(")(><\t\n |$\\\"\'", *input))
 	{
 		if (!ft_strncmp("<<", input, 2) || !ft_strncmp(">>", input, 2))
 			len = 2;
@@ -26,7 +26,7 @@ int	token_len(char *input)
 	}
 	else
 	{
-		while (!ft_strchr("><\t\n |$\\\"\'", input[len]))
+		while (!ft_strchr(")(><\t\n |$\\\"\'", input[len]))
 			len ++;
 	}
 	return (len);

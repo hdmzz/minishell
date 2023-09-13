@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 14:24:28 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/06 01:25:32 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/13 23:04:24 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**ft_split(char const *s, char c)
 
 	wordcount = ft_countwords(s, c);
 	split = malloc(sizeof(char *) * (wordcount + 1));
-	if (!split)
+	if (!split || wordcount == 0)
 		return (NULL);
 	j = 0;
 	while (wordcount--)
