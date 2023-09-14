@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 15:36:53 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:39:12 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ char	*get_cmd_path(char **to_search, t_shell *g_shell);
 //srcs/lexer/lexer.c
 int		lexer(t_shell *g_shell);
 int		token_len(char *input);
-
 
 //src/utils/utils.c
 void	ft_free_shell(t_shell *g_shell, int last_exit);
@@ -67,7 +66,6 @@ bool	pipes_conformity(t_shell *g_shell);
 
 //redir.c
 void	clean_cmd_tab(char **cmd, int first_redir, int end);
-int		recover_fd(t_shell *g_shelll);
 void	recover_or_io(t_cmd *cmd);
 void	redir_io(t_cmd *c);
 
@@ -100,7 +98,6 @@ char	*ev_expander(t_token *l);
 
 int		get_exit_status(int status);
 
-void	sigint_listener(int signum);
 int		child_heredoc(t_cmd *c, int *pipe, char *delim);
 
 char	*ft_join_shell(char *s, char *to_add);

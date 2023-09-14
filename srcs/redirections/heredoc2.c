@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:02:26 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 23:09:05 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:37:29 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ void	fill_tab(char **input_tab, char *input)
 	}
 	input_tab[i] = '\0';
 }
-//passer une premiere fois sur l'input expndre es variables passee
-//puis repasser dessus et voir pour les commandes
 
 char	*heredoc_cmd_parser(char *input, t_cmd *c)
 {

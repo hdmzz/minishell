@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 00:15:23 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:40:59 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void	concat_tab_heredoc(char **new_input, char **tab, int i, int total_len)
 	}
 }
 
-//rentrer dedans uniquement si ya un input et tout et tout
 char	*recompose_input(char **tab, int total_len, int i)
 {
 	char	*new_input;

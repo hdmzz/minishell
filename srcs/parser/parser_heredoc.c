@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:20:05 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 16:35:54 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 10:43:13 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ bool	is_valid_var_hd(char *var)
 	return (true);
 }
 
-bool	is_valid_herdoc_input(char *input, t_cmd *c)
+bool	is_valid_hd_inp(char *input, t_cmd *c)
 {
 	char	*inp;
 	int		i;
