@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/12 00:47:35 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:13:44 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int	exec_cmd(char **cmd, t_cmd *c, t_shell *g_shell)
 	int		ret;
 
 	full_cmd_path = c->full_cmd_path;
+	if (c->cmd[0][0] == '\0')
+		return (EXIT_FAILURE);
 	ret = get_err_num(c);
 	if (ret != 0)
 		return (ret);
