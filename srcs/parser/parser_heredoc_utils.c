@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 10:40:59 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:54:59 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	**tab_expanded(char **tab, t_cmd *c)
 	{
 		if (tab[i] && tab[i][0] == '$')
 		{
-			if (tab[i + 1][0] == '(')
+			if (tab[i + 1][0] == '(' || is_valid_var_hd(tab[i + 1]) == false)
 				continue ;
 			buff = tab[i + 1];
 			tab[i + 1] = var_xpanser(tab[i + 1], c->g_shell);
@@ -92,22 +92,20 @@ char	**tab_expanded(char **tab, t_cmd *c)
 
 void	concat_tab_heredoc(char **new_input, char **tab, int i, int total_len)
 {
-	int		tab_len;
-
-	tab_len = i;
 	i = -1;
 	while (tab[++i])
 	{
 		if (tab[i][0] != '$')
 		{
-			if (ft_strcmp(tab[i], " ") == 0)
-				continue ;
+			//if (ft_strcmp(tab[i], " ") == 0)
+			//	continue ;
 			ft_strlcat(*new_input, tab[i], total_len + 1);
-			if (i < tab_len - 1 && tab[i + 1][0] != ')' && \
-			tab[i][0] != '(')
-				ft_strlcat(*new_input, " ", total_len + 1);
+			//if (i < tab_len - 1 && tab[i + 1][0] != ')' && tab[i][0] != '(')
+			//	ft_strlcat(*new_input, " ", total_len + 1);
 		}
 		if (tab[i][0] == '$' && tab[i + 1][0] == '(')
+			ft_strlcat(*new_input, tab[i], total_len + 1);
+		if (tab[i][0] == '$' && is_valid_var_hd(tab[i + 1]) == false)
 			ft_strlcat(*new_input, tab[i], total_len + 1);
 	}
 }

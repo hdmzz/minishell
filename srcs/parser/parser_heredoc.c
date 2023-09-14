@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:20:05 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 10:43:13 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 11:33:00 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,12 +67,13 @@ int	input_into_parenthesis(char *input, int *i)
 	return (0);
 }
 
+//prnedra tab[i + 1]
 bool	is_valid_var_hd(char *var)
 {
 	int	i;
 
 	i = 0;
-	if (ft_isalpha(var[i]) == 0 && var[i] != '_')
+	if (ft_isalnum(var[i]) == 0 && var[i] != '_')
 		return (false);
 	i++;
 	while (var[i])
@@ -80,33 +81,6 @@ bool	is_valid_var_hd(char *var)
 		if (ft_isalnum(var[i]) == 0 && var[i] != '_')
 			return (false);
 		i++;
-	}
-	return (true);
-}
-
-bool	is_valid_hd_inp(char *input, t_cmd *c)
-{
-	char	*inp;
-	int		i;
-	int		y;
-
-	i = -1;
-	y = 0;
-	inp = input;
-	while (inp[++i] != '\0')
-	{
-		if (inp[i] == '$' && c->hd_delim_into_quotes == 0)
-		{
-			y = input_into_parenthesis(input, &i);
-			if (y > i)
-			{
-				inp = heredoc_cmd_parser(input, c);
-				if (inp == NULL)
-					return (false);
-			}
-			else if (is_valid_var_hd(inp) == false)
-				return (false);
-		}
 	}
 	return (true);
 }
