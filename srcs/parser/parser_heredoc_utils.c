@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 11:54:59 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:15:42 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	**tab_expanded(char **tab, t_cmd *c)
 			buff = tab[i + 1];
 			tab[i + 1] = var_xpanser(tab[i + 1], c->g_shell);
 			buff = ft_free_ptr(buff);
+			tab = replace_tab_hd(tab, i);
 		}
 	}
 	return (tab);

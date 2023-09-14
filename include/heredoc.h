@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:28 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 11:27:31 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:13:43 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ char	*recompose_input(char **tab, int total_len, int i);
 
 int		input_into_parenthesis(char *input, int *i);
 bool	is_valid_var_hd(char *var);
+char	**replace_tab_hd(char **tab, int i);
+
 #endif

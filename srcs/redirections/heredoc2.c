@@ -6,11 +6,35 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/09 16:02:26 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 11:44:53 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:19:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**replace_tab_hd(char **tab, int i)
+{
+	int		y;
+	int		z;
+	int		tab_size;
+	char	**new;
+
+	tab_size = split_lenght(tab);
+	new = ft_calloc(tab_size, sizeof(char *));
+	if (!new)
+		return (NULL);
+	y = -1;
+	z = 0;
+	while (tab[++y])
+	{
+		if (y == i)
+			continue ;
+		new[z++] = ft_strdup(tab[y]);
+	}
+	new[z] = NULL;
+	ft_free_split(tab);
+	return (new);
+}
 
 int	count_words(char *input)
 {

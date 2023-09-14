@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 13:47:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 13:08:34 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 12:25:48 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,19 @@ int	grammatical_analyzer(t_token **tokens, t_shell *g_shell)
 char	*var_xpanser(char *input, t_shell *g_shell)
 {
 	char	*ev;
+	char	*buff;
 
 	if (*input == '$')
 		input++;
 	if (*input == '?')
 		return (ft_itoa(g_last_exit_code));
 	else
+	{
+		buff = get_env_value(input, g_shell);
+		if (buff == NULL)
+			return (ft_strdup(""));
 		ev = ft_strdup(get_env_value(input, g_shell));
+	}
 	return (ev);
 }
 
