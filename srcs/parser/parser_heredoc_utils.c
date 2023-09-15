@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 15:22:48 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 12:15:42 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:21:52 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,7 @@ void	concat_tab_heredoc(char **new_input, char **tab, int i, int total_len)
 	while (tab[++i])
 	{
 		if (tab[i][0] != '$')
-		{
-			//if (ft_strcmp(tab[i], " ") == 0)
-			//	continue ;
 			ft_strlcat(*new_input, tab[i], total_len + 1);
-			//if (i < tab_len - 1 && tab[i + 1][0] != ')' && tab[i][0] != '(')
-			//	ft_strlcat(*new_input, " ", total_len + 1);
-		}
 		if (tab[i][0] == '$' && tab[i + 1][0] == '(')
 			ft_strlcat(*new_input, tab[i], total_len + 1);
 		if (tab[i][0] == '$' && is_valid_var_hd(tab[i + 1]) == false)

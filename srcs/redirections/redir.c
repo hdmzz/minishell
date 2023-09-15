@@ -6,29 +6,11 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:23:13 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/10 11:48:57 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:29:20 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	clean_cmd_tab(char **cmd, int first_redir, int end)
-{
-	while (first_redir && first_redir != end)
-	{
-		ft_free_ptr(cmd[first_redir]);
-		cmd[first_redir] = NULL;
-		first_redir++;
-	}
-}
-
-void	recover_or_io(t_cmd *cmd)
-{
-	if (cmd->fd_out != 1)
-		dup2(cmd->output_backup, STDOUT_FILENO);
-	if (cmd->fd_in != 0)
-		dup2(cmd->input_backup, STDIN_FILENO);
-}
 
 void	redir_io(t_cmd *c)
 {

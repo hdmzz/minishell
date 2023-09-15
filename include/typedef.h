@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:46 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/11 20:09:49 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:44:53 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,6 @@ typedef struct s_io
 typedef struct s_shell
 {
 	char	*start_buff;
-	char	*full_cmd_path;
-	char	**splitted_cmd;
 	char	**split_env;
 	t_token	*list_token;
 	t_token	*start_token;

@@ -6,32 +6,11 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:19:52 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/05 01:44:05 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:25:49 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	cln_whitespace_btw_ctrl_tok(t_shell *g_shell)
-{
-	t_token	*temp;
-
-	temp = g_shell->list_token;
-	while (temp)
-	{
-		if (temp->next && (temp->type & 31))
-		{
-			while (temp->next && temp->next->type == white_space)
-				delone(temp->next);
-		}
-		if (temp->prev && (temp->type & 31))
-		{
-			while (temp->prev && temp->prev->type == white_space)
-				delone(temp->prev);
-		}
-		temp = temp->next;
-	}
-}
 
 int	check_redirection_rules(t_shell *g_shell)
 {

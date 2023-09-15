@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:20:05 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 11:33:00 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:26:56 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	input_into_parenthesis(char *input, int *i)
 	return (0);
 }
 
-//prnedra tab[i + 1]
 bool	is_valid_var_hd(char *var)
 {
 	int	i;

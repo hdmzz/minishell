@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 23:45:59 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 10:39:12 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/14 16:30:43 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void	*delone(t_token *to_del);
 int		concat_word(t_shell *g_shell);
 
 //src/lexer/token_utils3.c
-void	cln_whitespace_btw_ctrl_tok(t_shell *g_shell);
 int		check_redirection_rules(t_shell *g_shell);
 
 //src/error/error.c
@@ -65,8 +64,6 @@ int		error_parsing_handler(char *err, char *detail, int err_nb, int quotes);
 bool	pipes_conformity(t_shell *g_shell);
 
 //redir.c
-void	clean_cmd_tab(char **cmd, int first_redir, int end);
-void	recover_or_io(t_cmd *cmd);
 void	redir_io(t_cmd *c);
 
 //cleanup.c
