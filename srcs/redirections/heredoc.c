@@ -6,13 +6,11 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/24 03:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 10:37:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:01:45 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <term.h>
-#include <curses.h>
 
 int	first_heredoc_verif(char **line, char *delim, int pipe)
 {
