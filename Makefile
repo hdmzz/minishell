@@ -13,7 +13,10 @@ NAME =	minishell
 
 HEADER = include/minishell.h \
 			include/pipes.h \
-			include/typedef.h
+			include/typedef.h \
+			include/heredoc.h \
+			include/builtins.h \
+			include/signal_sh.h
 
 SRC = $Smain.c \
 		$S$X/exec.c \

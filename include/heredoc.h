@@ -6,13 +6,12 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:28 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/14 12:13:43 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/16 21:07:27 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef HEREDOC_H
 # define HEREDOC_H
-# include <unistd.h>
 # include "typedef.h"
 
 //heredoc_parser.c
