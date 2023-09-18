@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:52:54 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 14:45:36 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:22:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,5 +118,6 @@ int					ft_str_is_alnum(char *str);
 void				*ft_free_ptr(void *ptr);
 
 int					ft_putchar(int c);
+char				*ft_lltoa(long long n);
 
 #endif

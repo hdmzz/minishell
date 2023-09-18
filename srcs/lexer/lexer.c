@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 13:07:12 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/13 21:18:50 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:47:48 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,12 @@ int	lexer(t_shell *g_shell)
 	i = 1;
 	input = g_shell->start_buff;
 	if (input == NULL)
-		exit_builtin(g_shell, 1);
+	{
+		printf("exit\n");
+		ft_free_shell(g_shell, 1);
+		rl_clear_history();
+		exit(g_last_exit_code);
+	}
 	if (ft_strcmp(input, "\n") == 0)
 		return (1);
 	while (*input != 0)

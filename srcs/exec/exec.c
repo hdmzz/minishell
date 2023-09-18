@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/15 12:07:41 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 16:44:31 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	exec_cmd(char **cmd, t_cmd *c, t_shell *g_shell)
 	if (execve(full_cmd_path, cmd, g_shell->split_env) == -1)
 	{
 		error_handler("execve", NULL, strerror(errno), ret);
-		exit_builtin(g_shell, ret);
+		exit_builtin(c, g_shell, ret);
 	}
 	return (EXIT_FAILURE);
 }
