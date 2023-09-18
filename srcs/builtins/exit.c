@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 17:14:37 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/19 00:25:41 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,13 @@ int	check_exit_arg(char **tab)
 	while (tab[1][i])
 	{
 		if (!ft_isdigit(tab[1][i]))
-			return (error_handler(tab[0], tab[1], "numeric argument required", 2));
+			return (error_handler(tab[0], tab[1], \
+			"numeric argument required", 2));
 		i++;
 	}
 	if (long_long_overflow(tab[1]))
 		return (error_handler(tab[0], tab[1], "numeric argument required", 2));
-	else 
+	else
 		return (ft_atoi(tab[1]));
 }
 
@@ -67,7 +68,7 @@ int	exit_cmd(t_cmd *c, t_shell *g_shell, int last_exit)
 	ft_free_shell(g_shell, last_exit);
 	rl_clear_history();
 	exit(g_last_exit_code);
-	return(1);
+	return (1);
 }
 
 int	exit_builtin(t_shell *g_shell, int last_exit)
@@ -77,5 +78,5 @@ int	exit_builtin(t_shell *g_shell, int last_exit)
 	ft_free_shell(g_shell, last_exit);
 	rl_clear_history();
 	exit(last_exit);
-	return(1);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 00:13:10 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/19 00:25:08 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	env_builtin(char **cmd, t_shell *g_shell)
 	}
 	return (EXIT_SUCCESS);
 }
-
 
 int	ft_check_double(char *str, char **tab)
 {
@@ -63,7 +62,8 @@ char	**ft_sort_tab(char **tab, int i)
 		min_idx = -1;
 		while (tab[++j])
 		{
-			if (ft_check_double(tab[j], new_tab) == 1 && (min_idx == -1 || ft_strcmp(tab[j], tab[min_idx]) < 0))
+			if (ft_check_double(tab[j], new_tab) == 1 && \
+			(min_idx == -1 || ft_strcmp(tab[j], tab[min_idx]) < 0))
 				min_idx = j;
 		}
 		if (min_idx != -1)
