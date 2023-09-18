@@ -6,13 +6,14 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:46 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/16 21:05:18 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 14:21:51 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
 
+#include <stdio.h>
 # include <readline/history.h>
 # include <sys/wait.h>
 # include <stdbool.h>
