@@ -6,14 +6,14 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/16 13:13:55 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 15:11:51 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "typedef.h"
 #include "minishell.h"
 
-int	exit_builtin(t_shell *g_shell, int last_exit)
+int	exit_builtin(t_cmd *c, t_shell *g_shell, int last_exit)
 {
 	if (last_exit == 1)
 		printf("exit\n");
