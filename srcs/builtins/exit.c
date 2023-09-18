@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 15:29:23 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 01:25:09 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	exit_cmd(t_cmd *c, t_shell *g_shell, int last_exit)
 		{
 			error_handler(c->cmd[0], "too many arguments", NULL, 2);
 			g_last_exit_code = 1;
+			ft_free_shell(g_shell, last_exit);
+			rl_clear_history();
+			exit(g_last_exit_code);
 			return (1);
 		}
 	}
