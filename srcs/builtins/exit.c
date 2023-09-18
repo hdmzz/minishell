@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 16:56:15 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:14:37 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	check_exit_arg(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab[1])
+		return (0);
 	while (tab[1][i])
 	{
 		if (!ft_isdigit(tab[1][i]))
@@ -45,7 +47,7 @@ int	check_exit_arg(char **tab)
 		return (ft_atoi(tab[1]));
 }
 
-int	exit_builtin(t_cmd *c, t_shell *g_shell, int last_exit)
+int	exit_cmd(t_cmd *c, t_shell *g_shell, int last_exit)
 {
 	int	tab_len;
 
@@ -65,5 +67,15 @@ int	exit_builtin(t_cmd *c, t_shell *g_shell, int last_exit)
 	ft_free_shell(g_shell, last_exit);
 	rl_clear_history();
 	exit(g_last_exit_code);
+	return(1);
+}
+
+int	exit_builtin(t_shell *g_shell, int last_exit)
+{
+	if (last_exit == 1)
+		printf("exit\n");
+	ft_free_shell(g_shell, last_exit);
+	rl_clear_history();
+	exit(last_exit);
 	return(1);
 }

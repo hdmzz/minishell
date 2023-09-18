@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:52 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/07 16:50:21 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/09/18 17:29:18 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	export_builtin(t_cmd *c, t_shell *g_shell)
 	i = 1;
 	user_input = c->cmd;
 	if (!user_input[i])
-		return (env_builtin(user_input, g_shell));
+		return (ex_builtin(user_input, g_shell));
 	while (user_input[i])
 	{
 		if (!is_valid_env_var_key(user_input[i]))

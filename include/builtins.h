@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:13:15 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 16:08:04 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:29:01 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 
 int		cd_builtin(t_cmd *c, t_shell *g_shell);
 int		dispatcher_builtin(t_shell *g_shell, t_cmd *c);
-int		exit_builtin(t_cmd *c, t_shell *g_shell, int last_exit);
+int		exit_builtin(t_shell *g_shell, int last_exit);
 int		export_builtin(t_cmd *c, t_shell *g_shell);
 int		pwd_builtin(void);
 int		echo_builtin(char **args);
 int		unset_builtin(t_cmd *c, t_shell *g_shell);
 int		env_builtin(char **cmd, t_shell *g_shell);
+int		exit_cmd(t_cmd *c, t_shell *g_shell, int last_exit);
+int		ex_builtin(char **cmd, t_shell *g_shell);
 
 //export.c
 int		my_set_env(const char *name, char *value, t_shell *g_shell);

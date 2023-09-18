@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:15:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 16:48:04 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/18 17:11:58 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	child(t_cmd *c, t_shell *g_shell)
 	close_fds(g_shell->cmds);
 	if (ret == COMMAND_NOT_FOUND)
 		ret = exec_cmd(c->cmd, c, g_shell);
-	exit_builtin(c, g_shell, ret);
+	exit_builtin(g_shell, ret);
 }
 
 int	create_children(t_cmd *c, t_shell *g_shell)
