@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:15:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 15:17:28 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/09/19 17:48:40 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	handle_cmd(t_shell *g_shell)
 
 	ret = 0;
 	c = g_shell->cmds;
-	if (c == NULL || c->cmd[0][0] == '\0')
+	if (c == NULL || c->cmd == NULL)
 		return (EXIT_SUCCESS);
 	redir_io(c);
 	ret = dispatcher_builtin(g_shell, c);
