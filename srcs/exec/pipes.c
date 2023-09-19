@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 16:15:34 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 14:40:18 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:17:28 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ static void	child(t_cmd *c, t_shell *g_shell)
 	if (ret == COMMAND_NOT_FOUND)
 		ret = exec_cmd(c->cmd, c, g_shell);
 	close(0);
+	close(1);
 	exit_builtin(g_shell, ret);
 }
 
