@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_builtins.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:14 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 00:25:08 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/19 15:02:03 by hsilverb         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,14 @@ int	ex_builtin(char **cmd, t_shell *g_shell)
 	char	**new_tab;
 
 	i = 0;
-	new_tab = ft_sort_tab(g_shell->split_env, -1);
 	if (split_lenght(cmd) > 1)
 		return (EXIT_FAILURE);
 	if (g_shell->split_env == NULL)
 		return (EXIT_FAILURE);
-	while (g_shell->split_env[i])
+	new_tab = ft_sort_tab(g_shell->split_env, -1);
+	while (new_tab[i])
 	{
-		printf("declare -x %s\n", g_shell->split_env[i]);
+		printf("declare -x %s\n", new_tab[i]);
 		i++;
 	}
 	ft_free_split(new_tab);
