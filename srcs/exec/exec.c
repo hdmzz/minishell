@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 17:11:47 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/19 14:46:18 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ static int	get_err_num(t_cmd *c)
 {
 	struct stat	st;
 
-	if (stat(c->full_cmd_path, &st) == -1)
+	if (c->full_cmd_path == NULL)
+		return (error_handler(c->cmd[0], "command not found", NULL, 127));
+	if (c->full_cmd_path && stat(c->full_cmd_path, &st) == -1)
 		return (error_handler(c->cmd[0], "command not found", NULL, 127));
 	if (S_ISDIR(st.st_mode))
 		return (error_handler(c->cmd[0], NULL, "is a directory", \
