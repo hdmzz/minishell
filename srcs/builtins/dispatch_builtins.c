@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:00 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/18 17:11:14 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/20 23:04:33 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 int	dispatcher_builtin(t_shell *g_shell, t_cmd *c)
 {
-	if (c && c->cmd[0] != NULL)
+	char	*tmp;
+
+	tmp = get_env_value("PATH", g_shell);
+	if (tmp != NULL && c && c->cmd[0] != NULL)
 	{
 		if (ft_strcmp("export", c->cmd[0]) == 0)
 			return (export_builtin(c, g_shell));
