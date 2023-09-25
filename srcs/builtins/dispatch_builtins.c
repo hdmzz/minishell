@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:00 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/20 23:04:33 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:05:00 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	dispatcher_builtin(t_shell *g_shell, t_cmd *c)
 		else if (ft_strcmp("unset", c->cmd[0]) == 0)
 			return (unset_builtin(c, g_shell));
 		else if (ft_strcmp("pwd", c->cmd[0]) == 0)
-			return (pwd_builtin());
+			return (pwd_builtin(g_shell));
 	}
 	return (COMMAND_NOT_FOUND);
 }

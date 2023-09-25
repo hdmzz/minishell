@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/31 18:18:44 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/12 03:11:38 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/25 13:21:57 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,14 @@ static int	change_dir(char	*path, t_shell *g_shell)
 	char	*cwd;
 	char	buff[PATH_MAX];
 
-	cwd = getcwd(buff, PATH_MAX);
-	if (!cwd || !path)
+	if (!path)
 		return (EXIT_FAILURE);
 	if (chdir(path) == -1)
 		return (error_handler("cd", path, strerror(errno), EXIT_FAILURE));
-	my_set_env("OLD_PWD", get_env_value("PWD", g_shell), g_shell);
+	cwd = getcwd(buff, PATH_MAX);
+	if (!cwd)
+		return (EXIT_FAILURE);
+	my_set_env("OLDPWD", get_env_value("PWD", g_shell), g_shell);
 	my_set_env("PWD", cwd, g_shell);
 	return (EXIT_SUCCESS);
 }
@@ -68,6 +70,6 @@ int	cd_builtin(t_cmd *c, t_shell *g_shell)
 	else if (len == 1)
 		return (change_dir(get_env_value("HOME", g_shell), g_shell));
 	else if (len == 2 && !ft_strcmp(c->cmd[1], "-"))
-		return (change_dir(get_env_value("OLD_PWD", g_shell), g_shell));
+		return (change_dir(get_env_value("OLDPWD", g_shell), g_shell));
 	return (change_dir(c->cmd[1], g_shell));
 }

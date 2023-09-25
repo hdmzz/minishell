@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_builtins.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:56 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/07 16:50:25 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 13:06:19 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	pwd_builtin(void)
+int	pwd_builtin(t_shell *g)
 {
-	char	path[PATH_MAX];
 	char	*cwd;
 
-	cwd = getcwd(path, PATH_MAX);
+	cwd = get_env_value("PWD", g);
 	if (cwd)
 	{
 		ft_putendl_fd(cwd, STDOUT_FILENO);
