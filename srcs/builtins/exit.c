@@ -6,7 +6,7 @@
 /*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/04 12:15:20 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 01:25:09 by hdamitzi         ###   ########.fr       */
+/*   Updated: 2023/09/25 14:52:30 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,11 @@ int	exit_cmd(t_cmd *c, t_shell *g_shell, int last_exit)
 			exit(g_last_exit_code);
 			return (1);
 		}
+		else
+			g_last_exit_code = check_exit_arg(c->cmd);
 	}
 	if (last_exit == 1)
 		printf("exit\n");
-	g_last_exit_code = check_exit_arg(c->cmd);
 	ft_free_shell(g_shell, last_exit);
 	rl_clear_history();
 	exit(g_last_exit_code);
