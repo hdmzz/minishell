@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hsilverb <hsilverb@student.42lyon.fr>      +#+  +:+       +#+        */
+/*   By: hdamitzi <hdamitzi@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 15:43:43 by hdamitzi          #+#    #+#             */
-/*   Updated: 2023/09/19 15:28:56 by hsilverb         ###   ########lyon.fr   */
+/*   Updated: 2023/09/25 11:47:09 by hdamitzi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ char	*get_cmd_path(char **to_search, t_shell *g_shell)
 
 	path_indx = get_env_idx("PATH", g_shell);
 	if (path_indx == -1)
+		return (NULL);
+	if (to_search[0] == NULL)
 		return (NULL);
 	if (!access(to_search[0], X_OK))
 		return (to_search[0]);
